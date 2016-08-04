@@ -1,3 +1,7 @@
+<% content_for :head do %>
+  <title><%= @item.title %> - Monolist</title>
+  <meta property="description" content="<%= @item.title %>に関する情報です。この商品を欲しい人、持ってる人を表示しています。" />
+<% end %>
 <div class="container">
   <div class="container-inner inner-sm clearfix">
     <div class="item-single-main">
@@ -20,9 +24,9 @@
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
           <% @have_users.each do |user| %>
-            <p>
-              <%= link_to image_tag(gravatar_for(user, size: 50%)), user %>
-            </p>
+            <%= link_to(user) do %>
+              <%= gravatar_for user, size: 50 %>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -30,7 +34,9 @@
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
           <% @want_users.each do |user| %>
-            <%= link_to image_tag(gravatar_for(user, size: 50%)), user %>
+            <%= link_to(user) do %>
+              <%= gravatar_for user, size: 50 %>
+            <% end %>
           <% end %>
         </div>
       </div>

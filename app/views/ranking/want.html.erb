@@ -1,0 +1,29 @@
+<% count = 1 %>
+<h1>Want Ranking</h1>
+<div class="container">
+  <div class="container-inner inner-default clearfix">
+    <% @items.each do |item| %>
+      <% @item = Item.find(item[0]) %>
+      <div class="item-box">
+        <span class="label label-info"><%= count %></span>
+        <span class="label label-default"><%= item[1] %> Users</span>
+        <div class="image">
+          <div class="img-wrap">
+            <% if @item.large_image.present? %>
+              <%= image_tag(@item.large_image , alt: @item.title) %>
+            <% else %>
+              <%= image_tag("no-image.png" , alt: @item.title) %>
+            <% end %>
+          </div>
+        </div>
+        <div class="detail">
+          <p class="title">
+            <%= @item.title %>
+          </p>
+        </div>
+        <%= render 'items/action' , item: @item if logged_in? %>
+      </div>
+      <% count += 1 %>
+    <% end %>
+  </div>
+</div>
